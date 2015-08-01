@@ -37,7 +37,7 @@ h2{
 }
 
 .bs-example{
-	margin: 20px;
+	margin: 10px;
 }
 
 .carousel.carousel-fade .item {
@@ -106,34 +106,49 @@ nav a#pull {
     display: none;
 }       
 
-@media screen and (max-width: 600px) {
-    nav { 
-        height: auto;
+@media only screen and (max-width : 600px) {
+    nav {
+        border-bottom: 0;
     }
     nav ul {
-        width: 100%;
-        display: block;
+        display: none;
         height: auto;
     }
-    nav li {
-        width: 50%;
-        float: left;
+    nav a#pull {
+        display: block;
+        background-color: #283744;
+        width: 100%;
         position: relative;
     }
-    nav li a {
-       
-    }
-    nav a {
-        text-align: left;
-        width: 100%;
-        text-indent: 25px;
+    nav a#pull:after {
+        content:"";
+        background: url('nav-icon.png') no-repeat;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        position: absolute;
+        right: 15px;
+        top: 10px;
     }
 }
-
-
 </style>
 <script>
-
+$(function() {
+    var pull        = $('#pull');
+        menu        = $('nav ul');
+        menuHeight  = menu.height();
+ 
+    $(pull).on('click', function(e) {
+        e.preventDefault();
+        menu.slideToggle();
+    });
+});
+$(window).resize(function(){
+    var w = $(window).width();
+    if(w > 320 && menu.is(':hidden')) {
+        menu.removeAttr('style');
+    }
+}); 
 </script>
 </head>
   <body>
@@ -146,7 +161,7 @@ nav a#pull {
         <li><a href="#">Web 2.0</a></li>
         <li><a href="#">Tools</a></li>  
     </ul>
-    <a href="#" id="pull">Menu</a>
+    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 </nav>
 <!-- CAROUSEL -->
 <div class="bs-example">
