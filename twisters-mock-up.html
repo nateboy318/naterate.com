@@ -105,30 +105,7 @@ nav a:hover, nav a:active {
 nav a#pull {
     display: none;
 }       
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
+
 @media screen and (max-width: 600px) {
     nav { 
         height: auto;
@@ -191,22 +168,6 @@ nav a#pull {
 
 </style>
 <script>
-	$(function() {
-    var pull        = $('#pull');
-        menu        = $('nav ul');
-        menuHeight  = menu.height();
- 
-    $(pull).on('click', function(e) {
-        e.preventDefault();
-        menu.slideToggle();
-    });
-});
-$(window).resize(function(){
-    var w = $(window).width();
-    if(w > 320 && menu.is(':hidden')) {
-        menu.removeAttr('style');
-    }
-}); 
 
 </script>
 </head>
