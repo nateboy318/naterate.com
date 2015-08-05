@@ -33,9 +33,16 @@ body {
    	text-align: center;
 }
 
-footer-text {
-font-family: Asap, Sans-Serfif;	
-text-align: center;
+#footer-text {
+    font-family: Asap, Sans-Serfif;	
+    text-align: center;
+}
+
+footer {
+ background: skyblue;
+ height: 4em;
+ border: 1px solid skyblue;
+ border-radius: 10%;
 }
 
 ol, ul {
