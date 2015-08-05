@@ -44,9 +44,9 @@ footer {
  border-radius: 10%;
 }
 #nav {
-display: inline;
+display: block;
 font-family: Asap, Sans-Serif;
-color: skyblue;
+color: blue;
 }
 ol, ul {
 	list-style: none;
