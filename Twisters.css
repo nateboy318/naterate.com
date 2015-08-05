@@ -32,6 +32,22 @@ body {
    	font-weight: 300;
    	text-align: center;
 }
+#footer-text {
+    font-family: Asap, Sans-Serfif;	
+    text-align: center;
+}
+
+footer {
+ background: skyblue;
+ height: 4em;
+ border: 1px solid skyblue;
+ border-radius: 10%;
+}
+#nav {
+display: inline;
+font-family: Asap, Sans-Serif;
+color: skyblue;
+}
 ol, ul {
 	list-style: none;
 }
@@ -154,22 +170,7 @@ and (min-width : 480px) {
 	}
 	
 	
-#footer-text {
-    font-family: Asap, Sans-Serfif;	
-    text-align: center;
-}
 
-footer {
- background: skyblue;
- height: 4em;
- border: 1px solid skyblue;
- border-radius: 10%;
-}
-#nav {
-display: inline;
-font-family: Asap, Sans-Serif;
-color: skyblue;
-}
 	
 }
 
