@@ -32,6 +32,12 @@ body {
    	font-weight: 300;
    	text-align: center;
 }
+
+footer-text {
+font-family: Asap, Sans-Serfif;	
+text-align: center;
+}
+
 ol, ul {
 	list-style: none;
 }
