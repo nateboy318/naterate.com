@@ -32,22 +32,7 @@ body {
    	font-weight: 300;
    	text-align: center;
 }
-#footer-text {
-    font-family: Asap, Sans-Serfif;	
-    text-align: center;
-}
 
-footer {
- background: skyblue;
- height: 4em;
- border: 1px solid skyblue;
- border-radius: 10%;
-}
-#nav {
-display: block;
-font-family: Asap, Sans-Serif;
-color: blue;
-}
 ol, ul {
 	list-style: none;
 }
