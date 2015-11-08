@@ -1,9 +1,5 @@
-
-$(document).ready(functio() {
-    $('div').mouseenter(){
-      $('div').addClass('expand'); 
+<script>
+$(document).mouseenter(function() {
+    $("div").hide();
 });
-  $('div').mouseleave() {
-   $('div').removeClass('expand'); 
-});
-  
+</script>
