@@ -1,4 +1,5 @@
-$(document).mouseenter(function() {
-    $("div").hide();
+$(document).ready(function() {
+  $('div').mouseenter(){
+    $('div').hide();
 });
 
