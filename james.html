@@ -4,52 +4,25 @@
 		
 		<link rel="stylesheet" type="text/css" href="slide.css"><title>Vanishing Act</title>
         
-       
-	</head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+       <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+     </head>
 	<body>
-        <div class="container">
-	
-	<div data-am-gallery="3 next-prev-navigation">
+        <script> 
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").animate({left: '250px'});
+    });
+});
+</script> 
+</head>
+<body>
 
-		<!-- Radio -->
-		<input type="radio" name="gallery" id="img-1" checked />
-		<input type="radio" name="gallery" id="img-2" />
-		<input type="radio" name="gallery" id="img-3" />
+<button>Start Animation</button>
 
-		<!-- Images -->
-		<div class="images">
-			<div class="image" style="background-image: url(https://images.unsplash.com/photo-1460500063983-994d4c27756c?crop=entropy&fit=crop&fm=jpg&h=1325&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=2550);">
-				<!-- Add content to images (sample) -->
-				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; text-align: center; text-shadow: 0 0 20px rgba(0,0,0,0.5);">
-					<h1 style="margin-top: 0; margin-bottom: 0.8vw; font-size: 5vw; font-weight: bold;">Pure CSS Fadeshow</h1>
-					<p style="font-size: 2vw; font-weight: 100; margin-top: 0;">Easy to implement and use on <strong>your</strong> site!</p>
-				</div>
-			</div>
-			<div class="image" style="background-image: url(https://images.unsplash.com/photo-1440557653082-e8e186733eeb?crop=entropy&fit=crop&fm=jpg&h=1325&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=2500);"></div>
-			<div class="image" style="background-image: url(https://images.unsplash.com/photo-1449057528837-7ca097b3520c?crop=entropy&fit=crop&fm=jpg&h=1325&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=2500);"></div>
-		</div>
+<p>By default, all HTML elements have a static position, and cannot be moved. To manipulate the position, remember to first set the CSS position property of the element to relative, fixed, or absolute!</p>
 
-		<!-- Navigation -->
-		<div class="navigation">
-			<label class="dot" for="img-1"></label>
-			<label class="dot" for="img-2"></label>
-			<label class="dot" for="img-3"></label>
-		</div>
-		
-		<!-- Prev next navigation -->
-		<div class="prev-container">
-			<label class="prev" for="img-1"></label>
-			<label class="prev" for="img-2"></label>
-			<label class="prev" for="img-3"></label>
-		</div>
-		<div class="next-container">
-			<label class="next" for="img-1"></label>
-			<label class="next" for="img-2"></label>
-			<label class="next" for="img-3"></label>
-		</div>
+<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
 
-	</div>
-	
-</div>
 	</body>
 </html>
