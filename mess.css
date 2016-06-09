@@ -84,15 +84,6 @@ h2 {
   margin-top: 48px;
 }
 
-div {
-  height: 300px;
-  width: 5000;
-  max-width: 100%;
-  margin: 32px auto;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
 
 
 .fixed {
