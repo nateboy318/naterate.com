@@ -115,16 +115,17 @@ h1 {
 
 
 #panel, #flip {
-    padding: 5px;
-    font-size: 18px;
+    padding: 2px;
+    font-size: 20px;
     text-align: center;
-    background-color: #555;
+    background-color: #99ffdd;
     color: white;
     border: solid 1px #666;
     border-radius: 3px;
+    font-family:'Archivo Black';
 }
 
 #panel {
-    padding: 50px;
+    padding: 0px;
     display: none;
 }
