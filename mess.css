@@ -35,7 +35,7 @@ img {
   height:100px;
   width:200px;
   border-radius: 50%;
-  display: inline;
+  display: inline-block;
 }
 
 h1 {
