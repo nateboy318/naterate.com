@@ -37,3 +37,8 @@ img {
   border-radius: 50%;
   display: inline-block;
 }
+
+h1 {
+  text-transform: uppercase;
+  font-family:Archivo Black;
+}
