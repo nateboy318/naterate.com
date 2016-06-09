@@ -32,13 +32,13 @@ div {
 }
 
 img {
-  height:100px;
-  width:200px;
+  height:200px;
+  width:250px;
   border-radius: 50%;
   display: inline-block;
 }
 
 h1 {
   text-transform: uppercase;
-  font-family:Archivo Black;
+  font-family:'Archivo Black';
 }
