@@ -76,20 +76,7 @@ html {
 	background-color:rgba(255,255,255,.2);
 }
 
-footer {
-    /* just for demo */
-    background-color: #F8F8F8;
-    border-top: 1px solid #E7E7E7;
-    text-align:center;
-    padding:20px;
-   /* just for demo */ 
-  
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 60px;
-    width: 100%;
-}
+
 
 
 h2 {
@@ -135,9 +122,18 @@ h1 {
   font-family:'Archivo Black';
 }
 
-button {
-	background-color:#5cd6d6;
-	height:40px;
-	width:120px;
-	border-radius:8px;
+
+#panel, #flip {
+    padding: 5px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #555;
+    color: white;
+    border: solid 1px #666;
+    border-radius: 3px;
+}
+
+#panel {
+    padding: 50px;
+    display: none;
 }
