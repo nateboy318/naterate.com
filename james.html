@@ -13,8 +13,8 @@
     $("#flip").click(function(){
         $("#panel").slideDown(1000);
     });
-    $("#stop").click(function(){
-        $("#panel").stop();
+    $("#panel").click(function(){
+        $(this).slideUp(1000);
     });
 });
 </script> 
@@ -45,7 +45,7 @@
 
 
    <center><img src="http://static6.businessinsider.com/image/5275a3faeab8ea6d23d16dcc/last-year-president-obama-reportedly-told-his-aides-that-hes-really-good-at-killing-people.jpg"><div class="expand">
-   <button id="stop">Stop sliding</button>
+   
 
 <div id="flip">Click to slide down panel</div>
 <div id="panel">stuff about obama /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\</div>
