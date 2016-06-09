@@ -118,7 +118,7 @@ h1 {
     padding: 2px;
     font-size: 18px;
     text-align: center;
-    background-color: #8ED1C0;
+    background-color: #263645;
     color: white;
     border: solid 1px #666;
     border-radius: 3px;
@@ -129,3 +129,27 @@ h1 {
     padding: 0px;
     display: none;
 }
+@keyframes move {
+	0% { 
+		background-position: 0 60%, 0 50%;
+	}
+	100% { 
+	  background-position: 0 60%, 100% 50%;
+	}
+}
+
+.bg {
+  background-color: #263645;
+	background-image: url('http://timteeling.com/dev/img/network.svg'), radial-gradient(2000px 5000px at center, #ff8300 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0));
+	background-size: 125%, 50% 100%;
+  background-position: 0 60%, 0 100%;
+  animation: move 5s linear infinite;
+  
+  /* Extra Styles */
+  height: 3000px;
+  /*box-shadow: inset 0 0 25px rgba(0,0,0,.5);*/
+  border: 2px solid #263645;
+  border-right: 0;
+  border-left: 0;
+}
+
