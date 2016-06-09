@@ -44,7 +44,7 @@ html {
 	text-align:center;
 	font-family: open sans;
 	font-size: 20px;
-	color: #ffffff;
+	color: black;
 	height:47.5px;
 	padding-left:20px;
 	padding-right:20px;
@@ -54,7 +54,7 @@ html {
 	list-style: none;
 	font-weight: 200;
 	border-left:1px solid rgba(0,0,0,.1);
-	background-color:white;
+	background-color:none;
 	transition:background-color ease-in-out .5s;
 	-moz-transition:background-color ease-in-out .5s;
 	-webkit-transition:background-color ease-in-out .5s;
