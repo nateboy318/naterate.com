@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        
+        
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src='script.js'></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+		<link rel="stylesheet" href="style.css" />
+		
+		
+		<title>Block Blaster</title>
+		<style>
+		body, html {
+	
+	font-family:sans-serif;
+	background-color: #7BCFDE;
+	height:90%;
+	width:100%;
+}
+
+button.big_button:active {
+
+	border-style:inset;
+	background-color:#686869;
+	
+	}
+	
+button.big_button:hover {
+
+	background-color: #e6e7eb;
+
+	}
+	
+
+	
+#header {
+
+	font-family:sans-serif;
+	text-align:center;
+	font-size: 2em;
+	
+	
+	}
+	
+	#footer {
+
+	font-family:sans-serif;
+	text-align:center;
+	font-size: 1.25em;
+	background-color:#FFAA00;
+	color:#3914AF;
+	-webkit-text-stroke: 1px black;
+	margin:auto;
+	
+	
+	}
+
+
+#game_area {
+
+	background-color:#ffffff;
+	width:90%;
+	max-width:90%;
+	height:auto;
+	min-height:70%;
+	max-height:70%;
+	margin:auto;
+	border:2px solid black;
+	padding:0;
+	border-radius:10px;
+	clear:both;
+	position:relative;
+	text-align:center;
+	
+
+
+}
+
+
+.big_button {
+
+	
+	margin-right: auto;
+	margin-left: auto;
+	background-color:#d0d0d5;
+	border-style:outset;
+	border-radius:10px;
+	text-shadow:#0000000;
+	padding:1%;
+	font-size:2em;
+	margin-top:10%;
+
+}
+
+.block {
+
+	height:3em;
+	width:3em;
+	background-color:#7BCFDE;
+	top:0;
+	left:0;
+	position:absolute;
+	padding:0;
+	border:2px solid black;
+	display:flex;
+	
+
+}
+
+.block:hover{
+
+	cursor:crosshair;
+	
+}
+		</style>
+	</head>
+	<body>
+	
+	<script>
+	$(document).ready(function() {
+
+
+var AreaMaker = function (){
+
+	this.getWidth = function() {
+		var width = $('#game_area').width();
+		return width;
+	};
+	this.getHeight = function() {
+		var height = $('#game_area').height();
+		return height;
+	};
+
+	this.gameWidth = this.getWidth();
+	this.gameHeight = this.getHeight();
+	
+};
+
+var GameMaker = function(gameArea) {
+
+	this.level = 1;
+	this.gameOver = false;
+	
+	this.getRandom = function(min,max) {
+		var number = Math.floor(Math.random() * (max - min + 1)) + min;
+		return number;
+	};
+	
+	this.getColor = function() {
+		var color = this.getRandom(1,4);
+		switch(color) {
+			case 1:
+				color = "red";
+				break;
+			case 2:
+				color = "green";	
+				break;
+			case 3:
+				color = "gold";
+				break;
+			case 4:
+				color = "blue";
+				break;
+		}
+		return color;
+	};
+	
+	this.setLeft = function(blockName) {
+		var name = '#'+blockName;
+		var gameWidth = gameArea.gameWidth;
+		var blockWidth = $(name).width();
+		var width = gameWidth - (blockWidth*2);
+		var leftPosition = this.getRandom(1,width);
+		return leftPosition;
+	};
+	
+	this.reset = function(){
+		this.level=1;
+		var myClass = this;
+		setTimeout(function(){
+		$('.block').remove();
+		},500)
+		$('#game_area').append('<button id="reset" class="big_button">PLAY AGAIN</button>');
+            // add event binding for new button
+            $(document).on("click", '#reset', function () {
+			$('#reset').effect('explode',750,function(){$('#reset').remove();});
+			$('#footer').html('<h2>Level: 1</h2>'); 
+			
+			$('.block').remove();
+			myClass.blockLauncher(myClass.level);
+		});
+	};
+	
+	this.blockName =function(number){
+		name = 'block'+number;
+		return name;
+	};
+	
+	this.levelUp = function(blockName){
+		$('#'+blockName).remove();
+	
+		if($('#game_area').children().length === 0 ) {
+			this.level++;
+			var level = this.level;
+			$('#footer').html('<h2>Level:' +level+'</h2>');  // updates the footer with the new level
+			this.blockLauncher(level);
+		}
+	};
+
+	this.blockBuilder = function(name){
+		var blockName = name;
+		$('#game_area').prepend('<div class = "block" id=' + blockName + '></div>');
+		$('body').disableSelection();
+		var color = this.getColor();
+		$('#'+blockName).css("background-color",color);
+		
+		var leftPosition = this.setLeft(blockName);
+		$('#'+blockName).css("left",+leftPosition);
+		
+		var myClass = this;
+			
+		$('#'+blockName).click(function(){
+			$(this).hide('drop',{pieces:16},250,function(){myClass.levelUp(blockName);});
+		});
+		
+		this.checkStatus(blockName);
+	};
+	
+	
+			
+	this.getPosition = function(blockName){
+		var name = '#'+blockName;
+		var position = $(name).position().top;
+		return position;
+	};
+	
+	this.checkStatus = function(blockName){
+		var name = '#'+blockName;
+		var gameHeight = gameArea.gameHeight;
+		var position = this.getPosition(blockName);
+		var blockHeight = $(name).height();
+		if(position >= (gameHeight - blockHeight)) {
+			$('.block').stop().fadeOut('slow');
+			this.gameOver = true;
+			alert('Game Over');
+			this.reset();
+		}else{
+			this.dropIt(blockName);
+		}
+	};
+		
+	this.dropIt = function(blockName){
+		var name='#'+blockName;
+		var speed = 2;
+		var myClass = this;
+		//var check = this.checkStatus(blockName);
+		$(name).animate({top:'+='+speed},10,function(){myClass.checkStatus(blockName);});
+	};
+	
+	this.blockLauncher = function(level) {
+		this.gameOver=false;
+		var i = 0;
+		var myClass = this;
+
+		var launch = function () {
+			
+			setTimeout(function(){ // loop repeats every half second
+			var blockName = myClass.blockName(i);
+			$('#'+blockName).remove();
+			myClass.blockBuilder(blockName); // calls the function that creates the block
+			i++;
+			if(i<level && myClass.gameOver==false) {
+			launch();
+			}
+		},500)
+			if(this.gameOver==true){
+			$('.block').effect('drop', 750);
+			}
+		}; // ends launch function
+		
+		launch();
+	
+
+	}; // ends blockLauncher object
+}; // ends gameMaker constructor
+
+
+$('#start_button').click(function(){
+	
+	var gameArea = new AreaMaker();
+	var blockBlaster = new GameMaker(gameArea);
+
+		
+		$('#start_button').effect('fold',750,function(){$('#start_button').remove();});
+		$('#footer').html('<h2>Level: 1</h2>');
+		
+		
+	blockBlaster.blockLauncher(blockBlaster.level);
+	
+}); // ends start button click
+			
+				
+}); // ends document ready
+	</script>
+	
+		<div id="header">
+		<h1>BLOCK BLASTER</h1>
+		</div>
+
+			<div id="game_area">
+
+		<button id= "start_button" class = "big_button">START</button>
+	
+	
+		
+		</div> <!--game area -->
+		
+		<div id = "footer">
+		</div>
+		
+		
+
+	</body>
+</html>
