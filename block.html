@@ -15,108 +15,7 @@
 		<title>Block Blaster</title>
 		<style>
 
-@import "compass/css3";
-@import "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 800;
-  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
 
-.nav {
-	width:100% !important;
-	left:0px;
-	position:absolute;
-	overflow:hidden;
-	height:65px;
-	background-color:rgba(255,255,255,.2);
-	-webkit-box-shadow:0px 2px 1px rgba(50, 50, 50, 0.22);
-	-moz-box-shadow:0px 2px 1px rgba(50, 50, 50, 0.22);
-	box-shadow:0px 2px 1px rgba(50, 50, 50, 0.22);
-	padding-right:20px;
-}
-.nav li {
-	text-align:center;
-	font-family: open sans;
-	font-size: 20px;
-	color: black;
-	height:47.5px;
-	padding-left:20px;
-	padding-right:20px;
-	cursor:pointer;
-	padding-top:17.5px !important;
-	float: left;
-	list-style: none;
-	font-weight: 200;
-	border-left:1px solid rgba(0,0,0,.1);
-	background-color:none;
-	transition:background-color ease-in-out .5s;
-	-moz-transition:background-color ease-in-out .5s;
-	-webkit-transition:background-color ease-in-out .5s;
-	-o-transition:background-color ease-in-out .5s;
-	text-shadow: 0px -3px 3px rgba(255, 255, 255, 0.2);
-}
-.nav li a,a:visited,a:hover {
-	color: black;
-	text-decoration:none;
-}
-.nav li:first-child {
-	font-weight:bold;
-	border-left:none;
-}
-
-.nav li:hover {
-	background-color:rgba(255,255,255,.2);
-}
-.nav li.active {
-	background-color:rgba(255,255,255,.2);
-}
-#words {
-  border:solid 5px #CFD1D1;
-  background-color:#E6E8E8;
-  font-size:20px;
-  border-radius:8px;
-  font-family:serif;
-}
-
-#submit {
-  display:block;
-  border: solid 3px ;
-  height:31px;
-  width:91px;
-  border-radius:6px;
-}
-
-#para {
- font-size:20px; 
-  font-family:sans serif;
-}
-#commentbackground{
-   
-  background-color:#E6E8E8;
-  border-radius:3px;
-  height:100px;
-  width:;
-}
 		body, html {
 	
 	font-family:sans-serif;
@@ -406,14 +305,16 @@ $('#start_button').click(function(){
 	
 }); // ends start button click
 			
-	function getwords(){
-text = words.value;
-document.getElementById("para").innerHTML += '<p>' +text
-document.getElementById("words").innerHTML = window.alert("thank you for commenting on this game");
-}	
+				
 }); // ends document ready
 	</script>
-	
+	<ul class="nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="/block.html">Block Blast</a></li>
+	<li><a href="/jump.html">Block Jump</a></li>
+	<li><a href="#">Link</a></li>
+	<li class="active">Active</li>
+</ul>		
 		<div id="header">
 		<h1>BLOCK BLASTER</h1>
 		</div>
@@ -428,33 +329,6 @@ document.getElementById("words").innerHTML = window.alert("thank you for comment
 		
 		<div id = "footer">
 		</div>
-</div>
 
-
-
-
-<form>
-  <center>
-  
-<textarea id="words" rows="5" cols="122" placeholder="text here"></textarea>
-  </center>
-    <div id="commentbackground">  
-  <input type="button" onclick="getwords()" value="Enter" id="submit"/>
-   
-    
-
-<p id="para"></p>
-</div>
-  <div id="commentbackground">
-    </div>
-    <div id="commentbackground">
-      </div>
-      <div id="commentbackground">
-        </div>
-</form>
-
-
-
-</div>
 	</body>
 </html>
