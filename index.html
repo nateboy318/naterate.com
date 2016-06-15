@@ -4,13 +4,14 @@
 <script>
 function validateForm() {
     var x = document.forms["myForm"]["fname"];
-    var y = "p"
+    var y = "password"
     if (x == y) {
-        alert("wrong password");
-        return false;
+        alert("correct!!");
+        
     }
     else {
-    alert("correct!!");
+    alert("wrong password");
+    return false;
     }
 }
 </script>
