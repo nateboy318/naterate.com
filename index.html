@@ -5,7 +5,7 @@
 function validateForm() {
     var x = document.forms["myForm"]["fname"];
     var y = "password"
-    if (x != y) {
+    if (x == y) {
         alert("wrong password");
         return false;
     }
