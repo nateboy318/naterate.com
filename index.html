@@ -22,6 +22,10 @@ Login page
   body {
    background-image:url("http://us.123rf.com/450wm/divaler/divaler1202/divaler120200010/12501930-stone-brick-wall-in-gray-scale.jpg");
   }
+  .box {
+   height:50px;
+   width:150px;
+  }
  </style>
  <center>
   <br>
@@ -37,9 +41,9 @@ Simple Login Page
 </h1>
 
 <form name="login">
-Username<input type="text" name="userid"/>
+Username<input class="box" type="text" name="userid"/>
 <br>
-Password<input type="password" name="pswrd"/>
+Password<input class="box" type="password" name="pswrd"/>
 <br>
 <input type="button" onclick="check(this.form)" value="Login"/>
 <input type="reset" value="Cancel"/>
