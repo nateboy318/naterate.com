@@ -3,13 +3,14 @@
 <head>
 <script>
 function validateForm() {
-    var x = document.forms["myForm"]["fname"].value;
-    if (x == null || x == "") {
-        alert("Name must be filled out");
+    var x = document.forms["myForm"]["fname"];
+    var y = "password"
+    if (x != y) {
+        alert("wrong password");
         return false;
     }
     else {
-document.write(x)
+    alert("correct!!");
     }
 }
 </script>
