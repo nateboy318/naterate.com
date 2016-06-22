@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<script>
+$(document).ready(function(){
+    var height = $("#quote").height();
+    //alert("Toegestane hoogte: 500px\nHuidige hoogte: "+height+"px");
+    while (height > 500) {
+        var fontSize = $('p', $('#quote')).css('font-size').split('px')[0];
+        var fontInt = parseInt(fontSize) - 1;
+        fontInt = fontInt + 'px';
+        $('p', $('#quote')).css('font-size', fontInt);
+    }
+});
+</script>
+</html>
