@@ -1,15 +1,71 @@
 <!DOCTYPE html>
-
+<span id=yukle0></span>
+<span id=yukle1></span>
+<span id=yukle2></span>
+<span id=yukle3></span>
 <script>
-$(document).ready(function(){
-    var height = $("#quote").height();
-    //alert("Toegestane hoogte: 500px\nHuidige hoogte: "+height+"px");
-    while (height > 500) {
-        var fontSize = $('p', $('#quote')).css('font-size').split('px')[0];
-        var fontInt = parseInt(fontSize) - 1;
-        fontInt = fontInt + 'px';
-        $('p', $('#quote')).css('font-size', fontInt);
-    }
-});
+ while (ilkDeger < toplamDeger) {    
+            var yukle ="yukle"+ilkDeger ;   
+            var tekalan = '&'+$("#yukle"+ilkDeger+" :input").serialize();
+            var veriler = data;
+            //alert(ilkveri+tekalan);
+
+          $.ajax({
+                    type: 'POST',
+                    data: veriler,
+
+                  success: function(sonuc){
+
+                  //Gelen postu süzgeçle
+                    var $response=$(sonuc);
+                    var sonuc = $response.find('#cevap').val();
+                    var yanit = $response.find('#yanit').text();
+
+                    var baslangic = $response.find('#baslangic').val();
+                    var limit = $response.find('#limit').val();
+                    var servis = $response.find('#servis').val();
+
+                    //Proggress Bar kodları                 
+                    var prodeger=ilkDeger+1;
+
+                    if(prodeger < <?=$top;?>) {
+                        var olcu=(prodeger/<?=$top;?>*100);
+                        $('.progress-bar').css('width', olcu+'%').attr('aria-valuenow', olcu).html(olcu+'%'); 
+
+                    }else{
+
+                        $('.progress-bar').css('width', 100 + '%').addClass('progress-bar-success').html('Tamamlandı.').attr('aria-valuenow', '100');
+
+
+
+                        $('#progress-bar').css('width', 100 + '%').addClass('progress-bar-success');
+                        }
+
+
+                       if (sonuc == "1"){ 
+                            $('#yukle'+ilkDeger).html('<b><font color=green>BAŞARILI : </font>'+yanit+'</b><hr>');                      
+                            console.log(" Ürün Aktarıldı ");
+
+                            ilkDeger++; 
+                        }
+                        else if (sonuc=="0"){
+                            $('#yukle'+ilkDeger).html('<b><font color=red>HATA : </font>'+yanit+'</b><hr>');
+                            //$('#yukle'+ilkDeger).html('<div class="alert alert-success"><i class="fa fa-check-circle"></i>'+yanit+'<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                            console.log(yanit);
+                            ilkDeger++;
+
+                            } else {
+                            $('#yukle'+ilkDeger).html('<b><font color=red>HATA : </font>Geçersiz işlem</b><hr>');
+
+                            console.log(yanit);
+                            ilkDeger++;
+                            } 
+
+
+                    }  
+
+                    }    ));
+               }
 </script>
 </html>
