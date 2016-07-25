@@ -107,7 +107,7 @@ Bird.prototype.update = function() {
 }
 
 Bird.prototype.display = function() {
-	ctx.fillStyle = "#000";
+	ctx.fillStyle = "#fff";
 	ctx.fillRect(this.pos.x - this.size, this.pos.y - this.size, this.size, this.size);
 	if (!this.flapping) {
 		ctx.beginPath();
@@ -155,7 +155,7 @@ function Obstacle(x) {
 }
 
 Obstacle.prototype.display = function() {
-	ctx.fillStyle = "#000";
+	ctx.fillStyle = "#fff";
 	if (this.height >= 0) {
 		ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
 	} else if (this.height < 0) {
@@ -214,7 +214,7 @@ function Score() {
 	this.score = 0;
 
 	this.increment = function() {
-		this.score += 100;
+		this.score += 1;
 		console.log(this.score);
 	}
 	
