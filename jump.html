@@ -1,186 +1,44 @@
 <html>
 <head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="mess.css">
 
-  <script src"//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
  
 </head>
 
 <body>
   <style>
- * {
-  margin: 0 auto;
-  padding: 0;
-}
-
-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  background: #d53939;
-  color: #ffffff;
-}
-
-header h1 {
-  padding-top: 15px;
-}
-
-nav ul {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-}
-
-nav ul li a {
-  padding-right: 15px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-nav ul li a:hover {
-    color: #622929;
-}
-
-.container {
-  margin-top: 60px;
-}
-
-.card {
-  height: 430px;
-  max-width: 300px;
-  background: #39394a;
-  border-radius: 6px;
-  padding: 20px;
-  border: 5px solid #9494a4;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.pokemon-name {
-    text-transform: capitalize;
-    color: #f66a6a;
-}
-
-.pokemon-image {
-  max-width: 100%;
-}
-
-.columns {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-}
-
-.pokemon-stats, .pokemon-name {
-  text-align: center;
-}
-
-.pokemon-stats {
-    font-size: 1.8rem;
-    color: #ffffff;
+ .card {
+  background-color:grey;
+  border:black 4px solid;
 }
   </style>
 
-    <!-- Header -->
-        <header>
-            <div class="logo">
-                <h1>PokeAPI</h1>
-            </div>
-            <!-- Navigation -->
-            <nav>
-                <ul>
-                    <li><a class="newBtn" href="#">New Card</a></li>
-                    <li><a href="http://pokeapi.co/">API Source</a></li>
-                </ul>
-            </nav>
-        </header>
-        <!-- Rest of page body -->
-            <div class="container">
-                <!-- Pokemon Card -->
-                <div class="card u-full-width">
-                    <div class="row">
-                        <h3 class="twelve columns pokemon-name"></h3>
-                    </div>
-                    <div class="row">
-                        <img src="" class="u-max-full-width twelve columns pokemon-image">
-                    </div>
-                    <div class="row">
-                        <p class="twelve columns pokemon-stats"></p>
-                    </div>
-                </div>
-            </div>
-       <!-- my js files -->
-       <script src="app.js"></script>
+    <center>
+  <div ng-app="myApp" ng-controller="myCtrl" class="card">
+    <p>{{ pokemon.name }}</p>
+    <img src="https://img.pokemondb.net/artwork/{{ pokemon.name }}.jpg" alt="" />
+    <p>Type: {{pokemon.types[0].type.name }}</p>
+    <p>Height: {{ pokemon.height}}</p>
+    <p>Weight: {{ pokemon.weight}}</p>
+    <p>ID = {{ pokemon.id }}</p>
+    <hr />
+    <p>Moves {{ PokemonMove }}</p>
+    <A HREF="javascript:history.go(0)"> New Pokemon Click Here </A>
+  </div>
+  </center>
 
   <script>
- $(function() {
-   /* Check if jQuery is running */
-   console.log("We're ready!"); 
-   
-    /* Wrapper function */
-    function letsGetPokemon() {
-        /* Get a random pokemon */
-        function getRandomPokemonID() {
-            return Math.floor(Math.random() * (151 - 1)) + 1;
-        }
-            
-        /* There's 721 pokemon, according to bulbapedia */
-        var pokeUrl = "http://pokeapi.co/api/v2/pokemon/"  + getRandomPokemonID();
-        
-        //double check the url works
-        //console.log(pokeUrl);
-            
-        /* Call with ajax */
-        $.ajax({
-            //the url for request
-            url: pokeUrl,
-            
-            //POST or GET
-            type: "GET",
-            
-            //datatype we want back
-            dataType: "json",
-            
-            success: function(data) {           
-                //check if data is passing through
-                //console.log(data);
-                    
-                var pokeName     = data.name,
-                    pokeHeight   = data.height,
-                    pokeWeight   = data.weight,
-                    pokeSprite   = data.sprites.front_default;
-                    
-                //check to see if above are working
-                //console.log(pokeName + " " + pokeWeight + " " + pokeHeight + " " + pokeSprite + " ");
-                
-                //add our data to our page
-                $(".pokemon-name").html(pokeName);
-                $(".pokemon-image").attr("src", pokeSprite);
-                $(".pokemon-stats").html("<p>Height: " + pokeHeight + " ft</p>" + "<p>Weight: " + pokeWeight + " lbs</p>");
-            }
-        })
+ var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    var random = Math.floor(Math.random() * 151) + 1;
 
-        /* Code to run if our ajax request fails */
-        .fail(function() {
-            console.log("There was a problem handling the request");
-        })
-        
-        /* Code to run regardless */
-        .always(function() {
-            console.log("The request finished");
+  $http.get("http://pokeapi.co/api/v2/pokemon/" + random)
+        .then(function(response) {
+            $scope.pokemon = response.data;
         });
-        }
+});
  
- /* Call our function so it shows a card when we load */
- letsGetPokemon();
- 
-  /* When we click on our button */
-  $(".newBtn").click(function() {
-      /* We'll refresh our function and get a new card */
-      letsGetPokemon();
-   });
-}); //end of main function
 </script>
 </body>
 </html>
