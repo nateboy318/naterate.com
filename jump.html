@@ -3,7 +3,7 @@
   <link href="mess.css">
 
   <script src"https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
- 
+   <script src="http://pokeapi.co/api/v2/pokemon"></script>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 app.controller('myCtrl', function($scope, $http) {
     var random = Math.floor(Math.random() * 151) + 1;
 
-  $http.get("http://pokeapi.co/api/v2/" + random)
+  $http.get("http://pokeapi.co/api/v2/pokemon" + random)
         .then(function(response) {
             $scope.pokemon = response.data;
         });
