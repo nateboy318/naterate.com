@@ -8,233 +8,179 @@
 
 <body>
   <style>
- $card-height: 70vh;
-$pic-text-rel: 40%;
-$pic-margin: 5%;
-$col-rel: 30%;
-
-body{
-  background: url("https://images3.alphacoders.com/273/273289.jpg") no-repeat left bottom fixed;
-  background-size: cover;
+ * {
+  margin: 0 auto;
+  padding: 0;
 }
 
-h1 {
-  padding-top: 5%;
-  font-family: 'Press Start 2P';
+header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background: #d53939;
+  color: #ffffff;
+}
+
+header h1 {
+  padding-top: 15px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+
+nav ul li a {
+  padding-right: 15px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #622929;
+}
+
+.container {
+  margin-top: 60px;
+}
+
+.card {
+  height: 430px;
+  max-width: 300px;
+  background: #39394a;
+  border-radius: 6px;
+  padding: 20px;
+  border: 5px solid #9494a4;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+    color: #f66a6a;
+}
+
+.pokemon-image {
+  max-width: 100%;
+}
+
+.columns {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.pokemon-stats, .pokemon-name {
   text-align: center;
 }
 
-.main-card {
-  position: relative;
-  margin-top: (100-$card-height)/2;
-  height: $card-height;
-  width: 60vw;
-  margin-left: 20vw;
-  background-color: rgba(white, 0.5);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
-  img {
-    display: inline-block;
-    width: $pic-text-rel;
-    max-height: 70%;
-    margin: 0% $pic-margin 0% $pic-margin;
-  }
-  
-  #table-container {
-    display: inline-block;
-    width: 100 - 5 - $pic-text-rel - 2*$pic-margin;
-    vertical-align: top;
-  }
-  
-  .data {
-    margin-left: 10px;
-  }
-  
-  .att {
-    font-weight: bold;
-  }
-}
-
-#background-progressbar{ 
-  background-color: black;
-  border-radius: 10px;
-  width: 100%;
-  margin-right: -10px;
-  position: relative;
-}  
-
-#progressbar{
-    background-color: orange;
-    width: 0%;
-    height: 20px;
-    border-radius: 10px;
-  }
-
-$width-buttons: 350px;
-#buttons-container{
-  width: $width-buttons;
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  margin-left: -$width-buttons/2;
-}
-
-#hp-num{
-    position: absolute;
-    top:0;
-    right:10px;
-    color: white;
+.pokemon-stats {
+    font-size: 1.8rem;
+    color: #ffffff;
 }
   </style>
 
-<div class="main-card">
-  <h1> Pokemon card! </h1>
-  <img id="poke-pic" class="img-responsive" src="http://i1.wp.com/nintendo-papercraft.com/wp-content/uploads/2014/04/pokeball.png?resize=512%2C376" alt="Pokemon picture">
-  <div id="table-container">
-    <p class="att">Name:</p>
-    <p class="data">&nbsp;</p>
-    <p class="att">Types:</p>
-    <p class="data">&nbsp;</p>
-    <p class="att">Base HP:</p>
-    <div id="background-progressbar" class="data"> 
-      <div id="progressbar"></div>
-        <p id="hp-num"></p>
-    </div> 
-  </div>
-  <div id="buttons-container">
-    <button id="get-button" class="btn btn-warning disabled" type="button">
-      Get random Pokemon!
-    </button>
-    <button id="evolve" class="btn btn-warning disabled" target="_blank">
-      Evolve!
-    </button>
-    <a href="" id="tweet" class="btn btn-warning" target="_blank">
-      <i class="fa fa-twitter" aria-hidden="true"></i> Tweet it!
-    </a>
-  </div>
-</div>
+    <!-- Header -->
+        <header>
+            <div class="logo">
+                <h1>PokeAPI</h1>
+            </div>
+            <!-- Navigation -->
+            <nav>
+                <ul>
+                    <li><a class="newBtn" href="#">New Card</a></li>
+                    <li><a href="http://pokeapi.co/">API Source</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Rest of page body -->
+            <div class="container">
+                <!-- Pokemon Card -->
+                <div class="card u-full-width">
+                    <div class="row">
+                        <h3 class="twelve columns pokemon-name"></h3>
+                    </div>
+                    <div class="row">
+                        <img src="" class="u-max-full-width twelve columns pokemon-image">
+                    </div>
+                    <div class="row">
+                        <p class="twelve columns pokemon-stats"></p>
+                    </div>
+                </div>
+            </div>
+       <!-- my js files -->
+       <script src="app.js"></script>
 
   <script>
- var PokeJs = (function () {
-    var numPokemon;
-    var baseUrl = "http://pokeapi.co";
-    var baseApiUrl = baseUrl + "/api/v1";
-    var pokemonUrl = baseApiUrl + "/pokemon";
-
-    var name, types, hpNum, hpOver255, evoId, evoUrl;
-    
-    var _getRandomInt = function (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    
-    var _buildTweetUrl = function () {
-        var twitterBaseUrl = "https://twitter.com/intent/tweet?";
-        var message = "Get your random pokemon card here!";
-        var this_url = window.location.href;
-        var query_string = "text="+encodeURIComponent(message)+"&"+
-            "url="+encodeURIComponent(this_url);
-        $("#tweet").attr("href",twitterBaseUrl + query_string);
-    };
-
-    var _getTotalPokemon = function () {
-        $.ajax({
-            type: "GET",
-            url: pokemonUrl,
-            dataType: "jsonp"
-        }).done(function (pokemonData) {
-            numPokemon = pokemonData.meta.total_count;
-            $("#get-button").removeClass("disabled");
-        });
-    };
-
-    var _getPokemon = function (pokeId) {  
-        var gettingPokeSprite = 
-            $.ajax({
-                type: "GET",
-                url: baseApiUrl + "/sprite/" + pokeId,
-                dataType: "jsonp"
-            });
-        var gettingPokeInfo = 
-            $.ajax({
-                type: "GET",
-                url: pokemonUrl + "/" + pokeId,
-                dataType: "jsonp"
-            });
-        // Auxiliar deferred objects to make sure the DOM is updated once both ajax are reoslved
-        var deferredGettingPokeSprite = $.Deferred();
-        var deferredGettingPokeInfo = $.Deferred();
-
-        var sprite;
-        gettingPokeSprite.then(
-            function (pokeSpriteData) {
-                sprite = baseUrl + pokeSpriteData.image;
-            },
-            function () {
-                sprite = "http://i1.wp.com/nintendo-papercraft.com/wp-content/uploads/2014/04/pokeball.png?resize=512%2C376";
-            }
-        );
-        gettingPokeSprite.complete(function () {
-            deferredGettingPokeSprite.resolve();
-        });
+ $(function() {
+   /* Check if jQuery is running */
+   console.log("We're ready!"); 
+   
+    /* Wrapper function */
+    function letsGetPokemon() {
+        /* Get a random pokemon */
+        function getRandomPokemonID() {
+            return Math.floor(Math.random() * (151 - 1)) + 1;
+        }
+            
+        /* There's 721 pokemon, according to bulbapedia */
+        var pokeUrl = "http://pokeapi.co/api/v2/pokemon/"  + getRandomPokemonID();
         
-        name = "";
-        types = "";
-        hpNum = "0";
-        hpOver255 = "0%";
-        evoUrl = "";
-        gettingPokeInfo.done(function (pokeInfoData) {
-                name = pokeInfoData.name;
-                types = $.map(pokeInfoData.types, function(val) {
-                    return val.name;
-                    }).join(', ');
-                hpNum = pokeInfoData.hp.toString();
-                hpOver255 = (pokeInfoData.hp / 255 * 100).toString() + "%";
-                if (pokeInfoData.evolutions.length > 0){
-                    evoUrl = pokeInfoData.evolutions[0].resource_uri;
-                };
+        //double check the url works
+        //console.log(pokeUrl);
+            
+        /* Call with ajax */
+        $.ajax({
+            //the url for request
+            url: pokeUrl,
+            
+            //POST or GET
+            type: "GET",
+            
+            //datatype we want back
+            dataType: "json",
+            
+            success: function(data) {           
+                //check if data is passing through
+                //console.log(data);
+                    
+                var pokeName     = data.name,
+                    pokeHeight   = data.height,
+                    pokeWeight   = data.weight,
+                    pokeSprite   = data.sprites.front_default;
+                    
+                //check to see if above are working
+                //console.log(pokeName + " " + pokeWeight + " " + pokeHeight + " " + pokeSprite + " ");
+                
+                //add our data to our page
+                $(".pokemon-name").html(pokeName);
+                $(".pokemon-image").attr("src", pokeSprite);
+                $(".pokemon-stats").html("<p>Height: " + pokeHeight + " ft</p>" + "<p>Weight: " + pokeWeight + " lbs</p>");
+            }
+        })
+
+        /* Code to run if our ajax request fails */
+        .fail(function() {
+            console.log("There was a problem handling the request");
+        })
+        
+        /* Code to run regardless */
+        .always(function() {
+            console.log("The request finished");
         });
-        gettingPokeInfo.complete(function () {
-            deferredGettingPokeInfo.resolve();
-        });
-                                 
-        // Update DOM with the results
-        $.when(deferredGettingPokeSprite, deferredGettingPokeInfo).done(function () {
-                $("#poke-pic").attr('src', sprite);
-                $("p:contains('Name') + p").html(name);
-                $("p:contains('Types') + p").html(types);
-                $("#progressbar").width(hpOver255);
-                $("#hp-num").html(hpNum + "/" + "255");
-                if (evoUrl != "") {
-                    evoUrlArr = evoUrl.split("/");
-                    evoId = evoUrlArr[evoUrlArr.length-2];
-                    $("#evolve").removeClass("disabled");
-                } else {
-                    $("#evolve").addClass("disabled");
-                };
-        });
-    };
-    return {
-        init: function () {
-            _buildTweetUrl();
-            _getTotalPokemon();
-            $("#get-button").click(function () {
-                var randomPokeId = _getRandomInt(1, numPokemon).toString();
-                _getPokemon(randomPokeId);
-            });
-            $("#evolve").click(function () {
-                _getPokemon(evoId);
-            });
-        },
-    };
-
-})();
-
-$(document).ready(function() {
-    PokeJs.init();
-});
-
-
-
+        }
+ 
+ /* Call our function so it shows a card when we load */
+ letsGetPokemon();
+ 
+  /* When we click on our button */
+  $(".newBtn").click(function() {
+      /* We'll refresh our function and get a new card */
+      letsGetPokemon();
+   });
+}); //end of main function
 </script>
 </body>
 </html>
