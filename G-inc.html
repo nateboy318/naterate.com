@@ -9,6 +9,15 @@
       height:24px;
       width:24px;
     }
+    #draggable-element {
+  width:100px;
+  height:100px;
+  background-color:#666;
+  color:white;
+  padding:10px 12px;
+  cursor:move;
+  position:relative; /* important (all position that's not `static`) */
+}
   </style>
   
   
@@ -17,7 +26,40 @@
 <h1>Fitting Room</h1>
   
  <img src="https://img.clipartfest.com/85bdc12aa3ebeb30fa6ec8695154cbc2_download-this-image-as-human-girl-outline-clipart_600-577.png">
-  <img class="shirt" src="http://www.clipartkid.com/images/132/blue-tshirt-clip-art-blank-blue-tshirt-that-can-be-edited-to-include-PrdqTJ-clipart.png">
+  <img class="shirt" id="draggable-element" src="http://www.clipartkid.com/images/132/blue-tshirt-clip-art-blank-blue-tshirt-that-can-be-edited-to-include-PrdqTJ-clipart.png">
   
 </body>
+  <script>
+    var selected = null, // Object of the element to be moved
+    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+
+// Will be called when user starts dragging an element
+function _drag_init(elem) {
+    // Store the object of the element which needs to be moved
+    selected = elem;
+    x_elem = x_pos - selected.offsetLeft;
+    y_elem = y_pos - selected.offsetTop;
+}
+
+// Will be called when user dragging an element
+function _move_elem(e) {
+    x_pos = document.all ? window.event.clientX : e.pageX;
+    y_pos = document.all ? window.event.clientY : e.pageY;
+    if (selected !== null) {
+        selected.style.left = (x_pos - x_elem) + 'px';
+        selected.style.top = (y_pos - y_elem) + 'px';
+    }
+}
+
+// Destroy the object when we are done
+function _destroy() {
+    selected = null;
+}
+
+// Bind the functions...
+document.getElementById('draggable-element').onmousedown = function () {
+    _drag_init(this);
+    return false;
+  </script>
 </html>
