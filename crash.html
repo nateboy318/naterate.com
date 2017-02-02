@@ -1,77 +1,52 @@
+<!DOCTYPE html>
 <html>
-<head>
- <style>
-  .draggable {
-  filter: alpha(opacity=100);
-  opacity: 1.0;
-}
+    <head>
+        <style type="text/css">
+            .area {
+                height:150px;
+                width:400px;
+                border:2px solid;
+            }   
+        </style>
+    </head>
+    <body onload="load()">
 
-.dropped {
+        <script type="text/javascript">
 
-}
+            function load() {
+                var bottom = document.getElementById("bottom");
+                bottom.appendChild(newDraggableImage("square.jpg", 1));
+                bottom.appendChild(newDraggableImage("triangle.jpg", 2));
+                bottom.appendChild(newDraggableImage("circle.jpg", 3));
+            }
 
-#dragIcons {
-  border: 2px solid #ccc;
-  padding: 5px;
-  min-height: 100px;
-  width: 430px;
-}
+            function newDraggableImage(source, id) {
+                var image = document.createElement('img');
+                image.src = source;
+                image.id = id;
+                image.draggable = true;
+                image.ondragstart = drag;
+                return image;
+            }
 
-#briefcase {
-  border: 5px solid #ccc;
-  padding: 5px;
-  height: 560px;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-background:url("https://img.clipartfest.com/85bdc12aa3ebeb30fa6ec8695154cbc2_download-this-image-as-human-girl-outline-clipart_600-577.png") no-repeat ;
-}
-  #image-1 {
-   height:186px;
-   width:186px;
-  }
-  
-  #image-2 {
-   height:286px;
-   width:286px;
-  }
- </style>
-</head>
+            function drop(event) {
+                event.preventDefault();
+                var image = document.getElementById(event.dataTransfer.getData('Text'));
+                image.parentElement.removeChild(image);
+                event.target.appendChild(image);
+            }
 
-<body>
- <div id="dragIcons">
-  <img id="image-1" src="http://www.clipartkid.com/images/20/black-pants-clipart-i2clipart-royalty-free-public-domain-clipart-JpQ98Q-clipart.png">
-  <img id="image-2" src="http://www.clipartkid.com/images/132/blue-tshirt-clip-art-blank-blue-tshirt-that-can-be-edited-to-include-PrdqTJ-clipart.png">
-</div>
-<div id="briefcase">
- 
-</div>
+            function allowDrop(event) {
+                event.preventDefault();
+            }
 
-</body>
+            function drag(event) {
+                event.dataTransfer.setData('Text', event.target.id);
+            }
 
-
-
-<script>
- $(function() {
-  $("#dragIcons img").draggable({
-    revert: "invalid",
-    refreshPositions: true,
-    drag: function(event, ui) {
-      ui.helper.addClass("draggable");
-    },
-    stop: function(event, ui) {}
-  });
-  $("#briefcase").droppable({
-    drop: function(event, ui) {
-      if ($("#briefcase img").length == 0) {
-        $("#briefcase").html("");
-      }
-      ui.draggable.addClass("dropped");
-      $("#briefcase").append(ui.draggable);
-    }
-  });
-});
-
-</script>
-                     
+        </script>
+        <div id="top"    class="area" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="bottom" class="area" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </body>
 </html>
+
