@@ -53,15 +53,7 @@ background:url("https://img.clipartfest.com/85bdc12aa3ebeb30fa6ec8695154cbc2_dow
     drag: function(event, ui) {
       ui.helper.addClass("draggable");
     },
-    stop: function(event, ui) {
-      ui.helper.removeClass("draggable");
-      var image = this.src.split("/")[this.src.split("/").length - 1];
-      if ($.ui.ddmanager.drop(ui.helper.data("draggable"), event)) {
-        alert(image + " dropped.");
-      } else {
-        alert(image + " not dropped.");
-      }
-    }
+    stop: function(event, ui) {}
   });
   $("#briefcase").droppable({
     drop: function(event, ui) {
@@ -73,6 +65,7 @@ background:url("https://img.clipartfest.com/85bdc12aa3ebeb30fa6ec8695154cbc2_dow
     }
   });
 });
+
 </script>
                      
 </html>
