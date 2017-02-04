@@ -1,5 +1,289 @@
 
+
+
 <html>
+  
+  <style>
+    @use postcss-simple-vars;
+@use postcss-nested;
+@use lost;
+$spacing: 18px;
+$radius: 2px;
+@lost flexbox no-flex;
+@lost gutter $spacing;
+@import url(https://fonts.googleapis.com/css?family=Inconsolata);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css);
+$sm: 600px;
+$sm-cont: 550px;
+$med: 800px;
+$med-cont: 750px;
+$lg: 1200px;
+$lg-cont: 1150px;
+$color1: #2b2d42;
+
+/*rgba(43, 45, 66, 100)*/
+
+$color2: #8d99ae;
+
+/*rgba(141, 153, 174, 100)*/
+
+$color3: #edf2f4;
+
+/*rgba(237, 242, 244, 100)*/
+
+$color4: #ef233c;
+
+/*rgba(239, 35, 60, 100)*/
+
+$color5: #d90429;
+
+/*rgba(217, 4, 41, 100)*/
+
+html {
+  font-family: 'Bahiana', cursive;
+  background-color: $color1;
+  background-image: url('https://cdn.essayplus.com/static/img/a-plus.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.right {
+  text-align: right;
+  color: $color2
+}
+
+.container {
+  lost-center: auto;
+  overflow: hidden;
+  padding: 10px;
+  background: linear-gradient( to top, rgba(255, 255, 255, .90), rgba(255, 255, 255, .20));
+  @media (min-width: $med) {
+    lost-center: $med-cont;
+    padding: $spacing;
+    box-shadow: 0 7px 12px black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+  @media (min-width: $lg) {
+    lost-center: $lg-cont;
+  }
+}
+
+#logo,
+#nav-bar {
+  h1 {
+    color: $color1;
+    text-align: center;
+  }
+  margin-bottom: $spacing;
+  lost-column: 1/1 0;
+  @media (min-width: $med) {
+    lost-column: 1/2 0;
+    h1 {
+      text-align: left;
+    }
+    font-size:1.5em;
+  }
+}
+
+header {
+  lost-utility: clearfix;
+  nav {
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      background-color: $color3;
+      border-radius: $radius;
+      display: flex;
+      justify-content: space-around;
+      @media (min-width: $med) {
+        padding: 1em 0;
+        float: right;
+        background-color: transparent;
+      }
+    }
+    li {
+      display: inline-block;
+      font-size: 1.3em;
+      margin: 0 .25em;
+      padding: 0em 0em;
+      @media (min-width: $med) {
+        padding: .5em 1em;
+        font-size: 1em;
+        background-color: $color5;
+        border: solid 2px $color1;
+        border-radius: $radius;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        text-shadow: 0px 0px 6px black;
+      }
+      &.active {
+        background-color: $color3;
+        a {
+          color: $color1;
+        }
+      }
+      &:hover {
+        a {
+          color: $color1;
+        }
+      }
+    }
+  }
+}
+
+.middle {
+  lost-utility: clearfix;
+  position: relative;
+  margin-bottom: 2em;
+  .panel {
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: $color4;
+      margin: 0;
+    }
+    color: $color2;
+    margin-bottom: 10px;
+    ;
+    box-shadow: 0px 5px 10px $color1;
+    padding: .75em;
+    border-radius: $radius;
+    background-color: $color1;
+    @media (min-width: $med) {
+      padding: 1em;
+    }
+  }
+  >aside {
+    transition: all 500ms ease;
+    lost-column: 4/4;
+    nav>div:last-child {
+      padding-top: 1em;
+      /*       @media (max-width: $med) { */
+      max-height: 500px;
+      transition: max-height 500ms ease;
+      transition-delay: 1000ms;
+      /*       } */
+    }
+    &.full {
+      nav {
+        @media (max-width $med) {
+          margin-top: 10px;
+        }
+        padding: 0;
+        transition: padding 500ms ease;
+        transition-delay: 500ms;
+      }
+      nav>div:last-child {
+        padding-top: 0em;
+        max-height: 0px;
+        overflow: hidden;
+      }
+    }
+    nav>div:first-child {
+      background-color: $color2;
+      padding: .4em;
+      color: $color3;
+      border-radius: $radius;
+      h3 {
+        color: $color3;
+      }
+      i,
+      span {
+        float: right;
+      }
+    }
+    @media (min-width: $med) {
+      lost-column: 1/4;
+      lost-move: 0;
+      position: absolute;
+      &.full {
+        lost-move: -1/5;
+        position: absolute;
+        z-index: 1000;
+        .panel {
+          box-shadow: none;
+        }
+      }
+    }
+    @media (min-width: $lg) {
+      lost-column: 1/5;
+      &.full {
+        lost-move: -1/6;
+        position: absolute;
+      }
+    }
+  }
+  main {
+    lost-column: 4/4;
+    transition: all 500ms ease;
+    @media (min-width: $med) {
+      lost-column: 3/4;
+      lost-offset: -1/4;
+      position: relative;
+      &.full {
+        lost-column: 4/4;
+        lost-offset: 0;
+      }
+    }
+    @media (min-width: $lg) {
+      lost-column: 4/5;
+      lost-offset: -1/5;
+      &.full {
+        lost-column: 5/5;
+      }
+    }
+  }
+}
+
+footer {
+  lost-utility: clearfix;
+  color: black;
+  >div {
+    lost-column: 1/1 0;
+    @media (min-width: $med) {
+      lost-column: 1/2 0;
+    }
+  }
+}
+
+.colors>span {
+  display: inline-block;
+  border: solid 2px black;
+  padding: .5em;
+  &:nth-child(1) {
+    background-color: $color1;
+  }
+  &:nth-child(2) {
+    background-color: $color2;
+  }
+  &:nth-child(3) {
+    background-color: $color3;
+  }
+  &:nth-child(4) {
+    background-color: $color4;
+  }
+  &:nth-child(5) {
+    background-color: $color5;
+  }
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  padding: 70px;
+}
+
+  </style>
+  
+  
+  
 <head>
 <link href="https://fonts.googleapis.com/css?family=Bahiana" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="Aplus.css">
