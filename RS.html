@@ -29,8 +29,8 @@ if (form.pass.value=="Kit") {
    #box {
       border-radius:3px;
       background-color: #c2fcc0;
-      height:400px;
-      width:300px;
+      height:450px;
+      width:350px;
       margin:100px;
    }
    
@@ -42,13 +42,20 @@ if (form.pass.value=="Kit") {
    #bar {
       background-color:#fafafa;
       height:5px;
-      width:400px;
+      width:330px;
       margin:2px;
    }
    .title{
       font-family:"Courier New", Courier, monospace;
       color:#fafafa;
       margin:5px;
+   }
+   
+  #button-sub{
+     background-color:#fafafa;
+     height:30px;
+     width:75px;
+     color:#c2fcc0;
    }
 </style>
    
@@ -63,12 +70,12 @@ if (form.pass.value=="Kit") {
                <div id="bar"></div>
              
                            <br>
-         <h4 class="title">Username:</h2> <input class="input-box" name="id" type="text">
+         <h3 class="title">Username:</h2> <input class="input-box" name="id" type="text">
          <br>
-         <h4 class="title">Password:</h2> <input class="input-box" name="pass"type="password">
+         <h3 class="title">Password:</h2> <input class="input-box" name="pass"type="password">
          <br>
-         <input type="button" value="Login" onClick="pasuser(this.form)">
-         <input type="Reset">
+         <input id="button-sub" type="button" value="Login" onClick="pasuser(this.form)">
+         
        </form>
 </div>
    </center>
