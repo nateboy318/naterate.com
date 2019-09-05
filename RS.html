@@ -27,6 +27,11 @@ if (form.pass.value=="Kit") {
       margin:100px;
    }
    
+   .input-box {
+      height:100px;
+      width:50px;
+      margin:50px;
+   }
    
 </style>
    
@@ -35,8 +40,8 @@ if (form.pass.value=="Kit") {
 
 <div id="box">
       <form name="login">
-         <input name="id" type="text">
-         <input name="pass"type="password">
+         <input class="input-box" name="id" type="text">
+         <input class="input-box" name="pass"type="password">
          <input type="button" value="Login" onClick="pasuser(this.form)">
          <input type="Reset">
        </form>
