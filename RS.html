@@ -20,6 +20,10 @@ if (form.pass.value=="Kit") {
 </script>
 
 <style>
+   html {
+      background-color:#e3e3e3;
+   }
+   
    #box {
       background-color: #c2fcc0;
       height:600px;
@@ -28,8 +32,8 @@ if (form.pass.value=="Kit") {
    }
    
    .input-box {
-      height:100px;
-      width:50px;
+      height:50px;
+      width:200px;
       margin:50px;
    }
    
@@ -41,7 +45,9 @@ if (form.pass.value=="Kit") {
 <div id="box">
       <form name="login">
          <input class="input-box" name="id" type="text">
+         <br>
          <input class="input-box" name="pass"type="password">
+         <br>
          <input type="button" value="Login" onClick="pasuser(this.form)">
          <input type="Reset">
        </form>
