@@ -1,70 +1,86 @@
 <html>
-<head>
-<title>
-Login page
-</title>
-</head>
-<body>
- <style>
-  .wrapper {
-   height:300px;
-   width:300px;
-   border-radius:8px;
-   background-color:#BDF5F3;
-  }
-  h1 {
-   font-family:Impact, sans-serif;
-   text-align="center";
-  }
-  form {
-   font-family:Impact, sans-serif;
-  }
-  body {
-   background-image:url("http://us.123rf.com/450wm/divaler/divaler1202/divaler120200010/12501930-stone-brick-wall-in-gray-scale.jpg");
-  }
-  .box {
-   height:30px;
-   width:150px;
-  }
- </style>
- <center>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="wrapper">
-<h1>
-enter auth
-</h1>
-
-<form name="login">
-Username <input class="box" type="text" name="userid"/>
-<br>
-<br>
-Password ><input class="box" type="password" name="pswrd"/>
-<br>
-<input type="button" onclick="check(this.form)" value="Login"/>
-<input type="reset" value="Cancel"/>
-</form>
-</div>
-</center>
 
 <script language="javascript">
-function check(form)/*function to check userid & password*/
-{
- /*the following code checkes whether the entered userid and password are matching*/
- if(form.userid.value == "roux"||"Nate" && form.pswrd.value == "123" || "1234")
-  {
-    window.open('james.html')/*opens the target page while Id & password matches*/
+<!--//
+/*This Script allows people to enter by using a form that asks for a
+UserID and Password*/
+function pasuser(form) {
+if (form.id.value=="Nate") { 
+if (form.pass.value=="Royal") {              
+   location="index.html" 
+} 
+    else {
+ alert("Invalid Password")
   }
- else
- {
-   alert("Error Password or Username")/*displays error message*/
+}   
+  else {  alert("Invalid UserID")
   }
 }
+//-->
 </script>
-</body>
+
+<style>
+   html {
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKFHjY304woOxg7Ox69REfW6OUgU9dYs7KsAfKUON8_t47x-j6");
+      font-family:"Courier New", Courier, monospace;
+      color:#fafafa;
+      background-repeat:no-repeat;
+      background-size: 100% 100%;
+   }
+   
+   #box {
+      border-radius:3px;
+      background-color: black;
+      height:450px;
+      width:350px;
+      margin:100px;
+   }
+   
+   .input-box {
+      height:20px;
+      width:100px;
+      margin:3px;
+   }
+   #bar {
+      background-color:#fafafa;
+      height:5px;
+      width:330px;
+      margin:2px;
+   }
+   .title{
+      font-family:"Courier New", Courier, monospace;
+      color:#fafafa;
+      margin:5px;
+   }
+   
+  #button-sub{
+     background-color:#fafafa;
+     height:50px;
+     width:150px;
+     color:black;
+     margin:40px;
+     font-size:15px;
+   }
+</style>
+   
+   
+<center>
+
+<div id="box">
+      <form name="login">
+         <h1 class="title">Login</h1>
+                           <br>
+             
+               <div id="bar"></div>
+             
+                           <br>
+         <h3 class="title">Username:</h2> <input class="input-box" name="id" type="text">
+         <br>
+         <h3 class="title">Password:</h2> <input class="input-box" name="pass"type="password">
+         <br>
+         <input id="button-sub" type="button" value="Login" onClick="pasuser(this.form)">
+         
+       </form>
+</div>
+   </center>
 </html>
